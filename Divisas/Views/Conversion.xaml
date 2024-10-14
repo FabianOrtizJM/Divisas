@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Divisas.Views.Conversion"
+             Title="Conversión"
+             Background="White">
+    <!-- Contenedor principal -->
+    <VerticalStackLayout Padding="0" Spacing="0">
+
+        <!-- Encabezado -->
+        <Grid RowDefinitions="80" ColumnDefinitions="*,*,*" BackgroundColor="#114676" Padding="0">
+            <Image Source="dotnet_bot.png" HeightRequest="50" WidthRequest="50" Grid.Column="0"/>
+            <Label Text="Nombre de empresa" 
+                   FontSize="Large" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center" 
+                   Grid.Column="1"/>
+            <BoxView Color="Transparent" Grid.Column="2"/>
+        </Grid>
+
+        <!-- Pestañas Comprar/Vender -->
+        <Grid ColumnDefinitions="*,*" BackgroundColor="Transparent" Margin="5">
+            <Button Text="Comprar" BackgroundColor="Transparent" TextColor="Black" Grid.Column="0" 
+            FontAttributes="Bold" Clicked="OnComprarClicked" x:Name="btnComprar"/>
+            <Button Text="Vender" BackgroundColor="Transparent" TextColor="Gray" Grid.Column="1" 
+            FontAttributes="Bold" Clicked="OnVenderClicked" x:Name="btnVender"/>
+        </Grid>
+
+        <Frame BackgroundColor="#114676" Padding="0" BorderColor="#114676">
+        </Frame>
+
+        <!-- Sección de ingreso de monto -->
+        <Grid ColumnDefinitions="3*" RowDefinitions="Auto,Auto" Margin="20">
+            <Entry x:Name="EntryMonto" Placeholder="10000" FontSize="Large" TextColor="Black" Grid.Row="0" 
+                   VerticalOptions="Center" TextChanged="OnEntryMontoTextChanged" MaxLength="10" Keyboard="Numeric"/>
+            <Button Text="MXN" BackgroundColor="Transparent" TextColor="Black" Grid.Row="0" FontSize="Large"
+                    HorizontalOptions="End"/>
+        </Grid>
+
+        <!-- Selección de moneda -->
+        <Picker Title="Seleccione la moneda"
+         FontSize="Medium"
+         TextColor="White" Margin="20"
+                x:Name="myPicker"
+                BackgroundColor="#114676"
+               
+        >
+        
+        </Picker>
+
+        <!-- Resultado de la operación -->
+        <Label x:Name="ResultadoLabel" 
+               Text="La venta está a un total de $15,000 + IVA" 
+               FontSize="Large" 
+               FontAttributes="Bold"
+               TextColor="Black" 
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Margin="70"/>
+
+    </VerticalStackLayout>
+</ContentPage>
