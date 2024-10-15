@@ -3,22 +3,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Divisas.Añadir"
              Title="Añadir">
-    <VerticalStackLayout Padding="20" Spacing="15" HorizontalOptions="Center" VerticalOptions="Center">
+    <Grid Padding="20" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*" VerticalOptions="CenterAndExpand">
 
-        <Image Source="addcoins.png" WidthRequest="120" HeightRequest="120" HorizontalOptions="Center" />
+        <!-- Imagen ajustada -->
+        <Image Source="addcoins.png" 
+               WidthRequest="120" 
+               HeightRequest="120" 
+               Aspect="AspectFit"
+               Grid.Row="0" Grid.ColumnSpan="2"
+               HorizontalOptions="Center" />
 
-        <Entry Placeholder="Clave" HorizontalOptions="FillAndExpand" />
+        <Entry Placeholder="Clave" 
+               HorizontalOptions="FillAndExpand"
+               Grid.Row="1" Grid.ColumnSpan="2"/>
 
-        <Entry Placeholder="Precio - venta" HorizontalOptions="FillAndExpand" Keyboard="Numeric"/>
+        <Entry Placeholder="Precio - venta" 
+               Keyboard="Numeric"
+               HorizontalOptions="FillAndExpand"
+               Grid.Row="2" Grid.ColumnSpan="2"/>
 
-        <Entry Placeholder="Precio - compra" HorizontalOptions="FillAndExpand" Keyboard="Numeric"/>
+        <Entry Placeholder="Precio - compra" 
+               Keyboard="Numeric"
+               HorizontalOptions="FillAndExpand"
+               Grid.Row="3" Grid.ColumnSpan="2"/>
 
-        <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*,Auto">
-            <Label Text="Establecer cambio base" VerticalOptions="Center" Grid.Column="0" Padding="0,0,10,0" />
-            <Switch HorizontalOptions="End" Grid.Column="1" />
-        </Grid>
+        <Label Text="Establecer cambio base" 
+               VerticalOptions="Center" 
+               Padding="0,0,10,0"
+               Grid.Row="4" Grid.Column="0" />
 
-        <Button Text="Guardar" BackgroundColor="#002D62" TextColor="White" CornerRadius="10" HorizontalOptions="FillAndExpand" />
+        <Switch HorizontalOptions="End"
+                Grid.Row="4" Grid.Column="1" />
 
-    </VerticalStackLayout>
+        <Button Text="Guardar" 
+                BackgroundColor="#002D62" 
+                TextColor="White" 
+                CornerRadius="10"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="5" Grid.ColumnSpan="2"/>
+    </Grid>
 </ContentPage>
