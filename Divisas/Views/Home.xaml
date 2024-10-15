@@ -3,10 +3,90 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Divisas.Home"
              Title="Home">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView 
+        BackgroundColor="White">
+        <VerticalStackLayout Padding="20">
+
+            <!-- Header -->
+            <Grid Padding="10" BackgroundColor="#003366">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="logo.png" WidthRequest="50" HeightRequest="50" Grid.Column="0"/>
+                <Label Text="Nombre de empresa" FontSize="20" TextColor="White" VerticalOptions="Center" Grid.Column="1"/>
+            </Grid>
+
+            <!-- MXN Section -->
+            <Frame BackgroundColor="White" BorderColor="#003366" CornerRadius="10" HasShadow="True" Padding="10" Margin="10">
+                <VerticalStackLayout>
+                    <Label Text="MXN" FontSize="18" TextColor="#003366" HorizontalOptions="Center" />
+                    <Grid ColumnSpacing="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="Compra" FontSize="14" TextColor="#003366" HorizontalOptions="Center" />
+                            <Label Text="$1.00" FontSize="24" TextColor="#003366" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="Venta" FontSize="14" TextColor="#003366" HorizontalOptions="Center" />
+                            <Label Text="$1.00" FontSize="24" TextColor="#003366" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- USD Section -->
+            <Frame BackgroundColor="#003366" CornerRadius="10" HasShadow="True" Padding="10" Margin="10">
+                <VerticalStackLayout>
+                    <Label Text="USD" FontSize="18" TextColor="White" HorizontalOptions="Center" />
+                    <Grid ColumnSpacing="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="Compra" FontSize="14" TextColor="White" HorizontalOptions="Center" />
+                            <Label Text="$18.75" FontSize="24" TextColor="White" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="Venta" FontSize="14" TextColor="White" HorizontalOptions="Center" />
+                            <Label Text="$20.25" FontSize="24" TextColor="White" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- EUR Section -->
+            <Frame BackgroundColor="#003366" CornerRadius="10" HasShadow="True" Padding="10" Margin="10">
+                <VerticalStackLayout>
+                    <Label Text="EUR" FontSize="18" TextColor="White" HorizontalOptions="Center" />
+                    <Grid ColumnSpacing="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="Compra" FontSize="14" TextColor="White" HorizontalOptions="Center" />
+                            <Label Text="$20.75" FontSize="24" TextColor="White" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="Venta" FontSize="14" TextColor="White" HorizontalOptions="Center" />
+                            <Label Text="$22.31" FontSize="24" TextColor="White" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
