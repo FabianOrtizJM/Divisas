@@ -18,9 +18,9 @@
                 ContentTemplate="{DataTemplate local:CompraVenta}">
             </ShellContent>
         </Tab>
-        <Tab Title="Perfil" Icon="wallet.png">
+        <Tab Title="Añadir" Icon="wallet.png">
             <ShellContent 
-                ContentTemplate="{DataTemplate local:Nuevo}">
+                ContentTemplate="{DataTemplate local:Añadir}">
             </ShellContent>
         </Tab>
         <Tab Title="Perfil" Icon="perfil.png">
