@@ -6,7 +6,7 @@ public partial class CompraVenta : ContentPage
     public CompraVenta()
 	{
 		InitializeComponent();
-        InitializeComponent();
+
 
         // Inicializar las monedas en el Picker
         List<string> monedas = new List<string> { "USD", "MXN" };
@@ -91,23 +91,29 @@ public partial class CompraVenta : ContentPage
         }
     }
 
-    // Método para limitar la entrada a números y hasta 10 dígitos
+    // Método para limitar la entrada a números y hasta 10 dígitos  
     private void EntryMontoTextChanged(object sender, TextChangedEventArgs e)
     {
         var entry = sender as Entry;
         string currentText = e.NewTextValue;
 
-        // Solo permitir valores numéricos
+        // Solo permitir valores numéricos  
         if (!string.IsNullOrEmpty(currentText) && !currentText.All(char.IsDigit))
         {
-            entry.Text = e.OldTextValue; // Revertir al valor anterior si no es numérico
+            if (entry != null)
+            {
+                entry.Text = e.OldTextValue; // Revertir al valor anterior si no es numérico  
+            }
             return;
         }
 
-        // Limitar a 10 dígitos
+        // Limitar a 10 dígitos  
         if (currentText.Length > 10)
         {
-            entry.Text = currentText.Substring(0, 10); // Limitar a 10 caracteres
+            if (entry != null)
+            {
+                entry.Text = currentText.Substring(0, 10); // Limitar a 10 caracteres  
+            }
         }
     }
 }
