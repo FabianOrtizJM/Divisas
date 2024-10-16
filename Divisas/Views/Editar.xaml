@@ -11,28 +11,29 @@
 
             <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
                 <StackLayout Padding="0">
-                    <Entry x:Name="Clave" Placeholder="Clave" HorizontalTextAlignment="Center" FontSize="20" />
+                    <Entry TextColor="Black" x:Name="Clave" Placeholder="Clave" HorizontalTextAlignment="Center" FontSize="20" />
                 </StackLayout>
             </Frame>
 
             <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
                 <StackLayout Padding="0">
-                    <Entry x:Name="PrecioV" Placeholder="Precio - venta" HorizontalTextAlignment="Center" FontSize="20" />
+                    <Entry TextColor="Black" x:Name="PrecioV" Placeholder="Precio - venta" HorizontalTextAlignment="Center" FontSize="20" />
                 </StackLayout>
             </Frame>
 
             <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
                 <StackLayout Padding="0">
-                    <Entry x:Name="PrecioC" Placeholder="Precio - compra" HorizontalTextAlignment="Center" FontSize="20" />
+                    <Entry TextColor="Black" x:Name="PrecioC" Placeholder="Precio - compra" HorizontalTextAlignment="Center" FontSize="20" />
                 </StackLayout>
             </Frame>
 
             <Frame BorderColor="White" BackgroundColor="White" Padding="0" Margin="0,10,0,0">
                 <StackLayout Padding="0" Orientation="Horizontal">
                     <Label TextColor="Black" Text="Establecer cambio base" 
-                   VerticalOptions="Center" 
-                   Padding="0,0,10,0" />
-                    <Switch ThumbColor="#114676" HorizontalOptions="End" />
+                           VerticalOptions="Center" 
+                           Padding="0,0,10,0" />
+                    <Switch OnColor="#114676" 
+                            HorizontalOptions="End" />
                 </StackLayout>
             </Frame>
 
