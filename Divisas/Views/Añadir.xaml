@@ -29,16 +29,16 @@
 
             <Frame BorderColor="White" BackgroundColor="White" Padding="0" Margin="0,10,0,0">
                 <StackLayout Padding="0" Orientation="Horizontal">
-                    <Label Text="Establecer cambio base" 
+                    <Label TextColor="Black" Text="Establecer cambio base" 
                    VerticalOptions="Center" 
                    Padding="0,0,10,0" />
-                    <Switch HorizontalOptions="End" />
+                    <Switch ThumbColor="#114676" HorizontalOptions="End" />
                 </StackLayout>
             </Frame>
 
             <Frame Padding="0" Margin="0,10,0,0">
                 <StackLayout Padding="0">
-                    <Button Text="Guardar" Padding="20" BackgroundColor="Blue" TextColor="White" FontSize="20"></Button>
+                    <Button Text="Guardar" Padding="20" BackgroundColor="#114676" TextColor="White" FontSize="20"></Button>
                 </StackLayout>
             </Frame>
         </StackLayout>
