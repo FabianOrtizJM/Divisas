@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Divisas.Views.Editar"
+             Title="Editar">
+    <ScrollView>
+        <StackLayout BackgroundColor="White" Padding="20">
+            <Frame BorderColor="White" BackgroundColor="White" Padding="0" WidthRequest="200" HeightRequest="200" Margin="0,10,0,0">
+                <Image HeightRequest="200" WidthRequest="200" Source="addcoins.png" Aspect="AspectFit"></Image>
+            </Frame>
+
+            <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
+                <StackLayout Padding="0">
+                    <Entry x:Name="Clave" Placeholder="Clave" HorizontalTextAlignment="Center" FontSize="20" />
+                </StackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
+                <StackLayout Padding="0">
+                    <Entry x:Name="PrecioV" Placeholder="Precio - venta" HorizontalTextAlignment="Center" FontSize="20" />
+                </StackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
+                <StackLayout Padding="0">
+                    <Entry x:Name="PrecioC" Placeholder="Precio - compra" HorizontalTextAlignment="Center" FontSize="20" />
+                </StackLayout>
+            </Frame>
+
+            <Frame BorderColor="White" BackgroundColor="White" Padding="0" Margin="0,10,0,0">
+                <StackLayout Padding="0" Orientation="Horizontal">
+                    <Label Text="Establecer cambio base" 
+               VerticalOptions="Center" 
+               Padding="0,0,10,0" />
+                    <Switch HorizontalOptions="End" />
+                </StackLayout>
+            </Frame>
+
+            <Frame Padding="0" Margin="0,10,0,0">
+                <StackLayout Padding="0">
+                    <Button Text="Guardar cambios" Padding="20" BackgroundColor="Blue" TextColor="White" FontSize="20"></Button>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
