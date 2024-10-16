@@ -2,36 +2,53 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Divisas.CompraVenta"
-             Title="CompraVenta">
+             Title="CompraVenta"
+             BackgroundColor="White">
+    <ContentPage.Resources>
+        <Style x:Key="TabButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="TextColor" Value="Gray" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="10,15" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="FontSize" Value="Small"/>
+        </Style>
+    </ContentPage.Resources>
+
     <!-- Contenedor principal -->
     <VerticalStackLayout Padding="10" Spacing="10">
-
-
-
         <!-- Pestañas Comprar/Vender -->
-        <Grid ColumnDefinitions="*,*" BackgroundColor="#114676" Margin="5">
-            <Button Text="Comprar" BackgroundColor="Transparent" TextColor="Black" Grid.Column="0" 
-            FontAttributes="Bold" Clicked="OnComprarClicked" x:Name="btnComprar"/>
-            <Button Text="Vender" BackgroundColor="Transparent" TextColor="Gray" Grid.Column="1" 
-            FontAttributes="Bold" Clicked="OnVenderClicked" x:Name="btnVender"/>
+        <Grid ColumnDefinitions="*,*" BackgroundColor="#114676" Margin="0" >
+            <VerticalStackLayout Grid.Column="0" Spacing="0">
+                <Button Text="Comprar" Style="{StaticResource TabButtonStyle}"
+                        Clicked="OnComprarClicked" x:Name="btnComprar" />
+                <BoxView HeightRequest="2" Color="Transparent" x:Name="lineaComprar" />
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="1" Spacing="0">
+                <Button Text="Vender" Style="{StaticResource TabButtonStyle}"
+                        Clicked="OnVenderClicked" x:Name="btnVender" />
+                <BoxView HeightRequest="2" Color="Transparent" x:Name="lineaVender" />
+            </VerticalStackLayout>
         </Grid>
-
-
 
         <!-- Sección de ingreso de monto -->
+        <Frame BackgroundColor="White" Padding="0"  Margin="0,10,0,0">
+            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto" Margin="20">
+                <Entry x:Name="EntryMonto" Placeholder="10000" FontSize="Medium" TextColor="Black" PlaceholderColor="Gray" TextChanged="OnEntryMontoTextChanged" MaxLength="10" Keyboard="Numeric"/>
+                <Button Text="MXN" BackgroundColor="Transparent" TextColor="Black" FontSize="Medium"
+                        HorizontalOptions="End" VerticalOptions="Center"/>
+            </Grid>
+        </Frame>
 
-        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto" Margin="20">
-
-            <Entry x:Name="EntryMonto" Placeholder="10000" FontSize="Medium" TextColor="Black" PlaceholderColor="Gray" TextChanged="OnEntryMontoTextChanged" MaxLength="10" Keyboard="Numeric"/>
-            <Button Text="MXN" BackgroundColor="Transparent" TextColor="Black" FontSize="Medium"
-                    HorizontalOptions="End" VerticalOptions="Center"/>
-        </Grid>
         <!-- Selección de moneda -->
-        <Picker Title="Seleccione la moneda"
-                FontSize="Medium"
-                TextColor="Black" Margin="20"
-                x:Name="myPicker"
-                BackgroundColor="Transparent"/>
+        <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
+            <Picker Title="Seleccione la moneda"
+                    FontSize="Medium"
+                    TextColor="Black" Margin="20"
+                    x:Name="myPicker"
+                    BackgroundColor="Transparent"/>
+        </Frame>
 
         <!-- Resultado de la operación -->
         <Label x:Name="ResultadoLabel" 
@@ -41,7 +58,6 @@
                TextColor="Black" 
                HorizontalOptions="Center"
                VerticalOptions="Center"
-               Margin="20"/>
-
+               Margin="50"/>
     </VerticalStackLayout>
 </ContentPage>

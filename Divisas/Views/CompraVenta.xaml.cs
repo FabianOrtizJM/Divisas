@@ -3,30 +3,26 @@ namespace Divisas;
 public partial class CompraVenta : ContentPage
 {
     private bool esCompra = true;
-    public CompraVenta()
-	{
-		InitializeComponent();
 
+    public CompraVenta()
+    {
+        InitializeComponent();
 
         // Inicializar las monedas en el Picker
         List<string> monedas = new List<string> { "USD", "MXN" };
         myPicker.ItemsSource = monedas;
         myPicker.SelectedIndex = 0;
-        myPicker.BackgroundColor = Colors.LightGrey;
 
         // Evento para cambiar el resultado al cambiar el monto
         EntryMonto.TextChanged += OnEntryMontoTextChanged;
-
 
         // Texto inicial del label de resultado
         ResultadoLabel.Text = "La compra está a un total de $0 + IVA";
 
         // Establecer estilos iniciales para los botones
-        btnComprar.BackgroundColor = Color.FromArgb("#114676");
-        btnComprar.TextColor = Colors.White;
-        btnVender.BackgroundColor = Colors.Transparent;
-        btnVender.TextColor = Colors.Gray;
+        ActualizarEstilosBotones();
     }
+
     // Cuando el texto en el Entry cambia, actualizamos el resultado
     private void OnEntryMontoTextChanged(object sender, TextChangedEventArgs e)
     {
@@ -38,14 +34,7 @@ public partial class CompraVenta : ContentPage
     private void OnComprarClicked(object sender, EventArgs e)
     {
         esCompra = true; // Indica que es una compra
-
-        // Cambiar el estilo al presionar "Comprar"
-        btnComprar.BackgroundColor = Color.FromArgb("#114676");
-        btnComprar.TextColor = Colors.White;
-
-        btnVender.BackgroundColor = Colors.Transparent;
-        btnVender.TextColor = Colors.Gray;
-
+        ActualizarEstilosBotones();
         ActualizarResultado();
     }
 
@@ -53,14 +42,7 @@ public partial class CompraVenta : ContentPage
     private void OnVenderClicked(object sender, EventArgs e)
     {
         esCompra = false; // Indica que es una venta
-
-        // Cambiar el estilo al presionar "Vender"
-        btnVender.BackgroundColor = Color.FromArgb("#114676");
-        btnVender.TextColor = Colors.White;
-
-        btnComprar.BackgroundColor = Colors.Transparent;
-        btnComprar.TextColor = Colors.Gray;
-
+        ActualizarEstilosBotones();
         ActualizarResultado();
     }
 
@@ -91,6 +73,33 @@ public partial class CompraVenta : ContentPage
         }
     }
 
+    // Método para actualizar los estilos de los botones
+    // Método para actualizar los estilos de los botones
+    private void ActualizarEstilosBotones()
+    {
+        if (esCompra)
+        {
+            btnComprar.BackgroundColor = Colors.White;
+            btnComprar.TextColor = Colors.Black;
+            lineaComprar.Color = Colors.Black;  // Mostrar la línea debajo de Comprar
+
+            btnVender.BackgroundColor = Colors.White;
+            btnVender.TextColor = Colors.Gray;
+            lineaVender.Color = Colors.Transparent;  // Ocultar la línea debajo de Vender
+        }
+        else
+        {
+            btnVender.BackgroundColor = Colors.White;
+            btnVender.TextColor = Colors.Black;
+            lineaVender.Color = Colors.Black;  // Mostrar la línea debajo de Vender
+
+            btnComprar.BackgroundColor = Colors.White;
+            btnComprar.TextColor = Colors.Gray;
+            lineaComprar.Color = Colors.Transparent;  // Ocultar la línea debajo de Comprar
+        }
+    }
+
+
     // Método para limitar la entrada a números y hasta 10 dígitos  
     private void EntryMontoTextChanged(object sender, TextChangedEventArgs e)
     {
@@ -117,4 +126,3 @@ public partial class CompraVenta : ContentPage
         }
     }
 }
-
