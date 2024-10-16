@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Controls.Compatibility.Hosting;
+using System.Globalization;
 
 namespace Divisas
 {
@@ -6,14 +8,32 @@ namespace Divisas
     {
         public static MauiApp CreateMauiApp()
         {
+            CultureInfo cultureInfo = new CultureInfo("es-MX");
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
             var builder = MauiApp.CreateBuilder();
             builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            });
+            //.UseMauiCommunityToolkit()
+            //.UseMauiCommunityToolkitCore()
+            //.UseMauiCommunityToolkitMarkup()
+            //.ConfigureEssentials();
+
+            // Borrar la base de datos existente
+            //ConexionDB.BorrarBaseDeDatos("Divisas.db");
+            //Console.WriteLine("Base de datos recreada.");
+
+            using (var dbContext = new DivisasDbContext())
+            {
+                dbContext.Database.EnsureCreated();
+                dbContext.Dispose();
+            }
             Microsoft.Maui.Handlers.ToolbarHandler.Mapper.AppendToMapping("CustomNavigationView", (handler, view) =>
             {
 #if ANDROID
