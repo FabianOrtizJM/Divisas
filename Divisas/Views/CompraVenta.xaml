@@ -15,7 +15,7 @@
             <Setter Property="FontSize" Value="Small"/>
         </Style>
     </ContentPage.Resources>
-
+    <ScrollView>
     <!-- Contenedor principal -->
     <VerticalStackLayout Padding="10" Spacing="10">
         <!-- Pestañas Comprar/Vender -->
@@ -60,4 +60,6 @@
                VerticalOptions="Center"
                Margin="50"/>
     </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>
