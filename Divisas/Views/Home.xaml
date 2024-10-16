@@ -5,23 +5,32 @@
              Title="Home">
     <ScrollView 
         BackgroundColor="White">
-        <VerticalStackLayout Padding="20">
+        <VerticalStackLayout>
 
             <!-- Header -->
-            <Grid Padding="10" BackgroundColor="#003366">
+            <Grid Padding="10" BackgroundColor="#114676">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
+                    <!-- Imagen -->
                     <ColumnDefinition Width="*"/>
+                    <!-- Label que ocupará el resto del espacio -->
                 </Grid.ColumnDefinitions>
 
-                <Image Source="logo.png" WidthRequest="50" HeightRequest="50" Grid.Column="0"/>
-                <Label Text="Nombre de empresa" FontSize="20" TextColor="White" VerticalOptions="Center" Grid.Column="1"/>
+                <Image Source="cambio.png" WidthRequest="50" HeightRequest="50" Grid.Column="0"/>
+                <Label Text="Nombre de empresa" 
+                       FontSize="20"
+                       Margin="10"
+                       TextColor="White" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="End"
+                       Grid.Column="1"/>
             </Grid>
 
+
             <!-- MXN Section -->
-            <Frame BackgroundColor="White" BorderColor="#003366" CornerRadius="10" HasShadow="True" Padding="10" Margin="10">
+            <Frame BackgroundColor="White" BorderColor="#114676" CornerRadius="10" HasShadow="True" Padding="10" Margin="30,20,30,10">
                 <VerticalStackLayout>
-                    <Label Text="MXN" FontSize="18" TextColor="#003366" HorizontalOptions="Center" />
+                    <Label Text="MXN" FontSize="18" TextColor="#114676" HorizontalOptions="Center" />
                     <Grid ColumnSpacing="20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -29,20 +38,20 @@
                         </Grid.ColumnDefinitions>
 
                         <VerticalStackLayout Grid.Column="0">
-                            <Label Text="Compra" FontSize="14" TextColor="#003366" HorizontalOptions="Center" />
-                            <Label Text="$1.00" FontSize="24" TextColor="#003366" HorizontalOptions="Center" />
+                            <Label Text="Compra" FontSize="14" TextColor="#114676" HorizontalOptions="Center" />
+                            <Label Text="$1.00" FontSize="24" TextColor="#114676" HorizontalOptions="Center" />
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Column="1">
-                            <Label Text="Venta" FontSize="14" TextColor="#003366" HorizontalOptions="Center" />
-                            <Label Text="$1.00" FontSize="24" TextColor="#003366" HorizontalOptions="Center" />
+                            <Label Text="Venta" FontSize="14" TextColor="#114676" HorizontalOptions="Center" />
+                            <Label Text="$1.00" FontSize="24" TextColor="#114676" HorizontalOptions="Center" />
                         </VerticalStackLayout>
                     </Grid>
                 </VerticalStackLayout>
             </Frame>
 
             <!-- USD Section -->
-            <Frame BackgroundColor="#003366" CornerRadius="10" HasShadow="True" Padding="10" Margin="10">
+            <Frame BackgroundColor="#114676" CornerRadius="10" HasShadow="True" Padding="10" Margin="30,10">
                 <VerticalStackLayout>
                     <Label Text="USD" FontSize="18" TextColor="White" HorizontalOptions="Center" />
                     <Grid ColumnSpacing="20">
@@ -65,7 +74,7 @@
             </Frame>
 
             <!-- EUR Section -->
-            <Frame BackgroundColor="#003366" CornerRadius="10" HasShadow="True" Padding="10" Margin="10">
+            <Frame BackgroundColor="#114676" CornerRadius="10" HasShadow="True" Padding="10" Margin="30,10">
                 <VerticalStackLayout>
                     <Label Text="EUR" FontSize="18" TextColor="White" HorizontalOptions="Center" />
                     <Grid ColumnSpacing="20">
