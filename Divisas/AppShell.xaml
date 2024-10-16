@@ -6,14 +6,27 @@
     xmlns:local="clr-namespace:Divisas"
     Shell.FlyoutBehavior="Disabled"
     Title="Divisas">
-
-    <TabBar Shell.TabBarBackgroundColor="Blue" Shell.TabBarTitleColor="White" Shell.TabBarUnselectedColor="White">
+    <Shell.TitleView>
+            <HorizontalStackLayout Spacing="10" Padding="5" BackgroundColor="#114676" IgnoreSafeArea="True">
+                <Image Source="dotnet_bot.png" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Start"
+                       Aspect="AspectFit"
+                       HeightRequest="30"/>
+                <Label Text="Nombre de empresa" 
+                       FontSize="Medium" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" 
+                       TextColor="White"/>
+            </HorizontalStackLayout>
+        </Shell.TitleView>
+    <TabBar Shell.TabBarBackgroundColor="#114676" Shell.TabBarTitleColor="White" Shell.TabBarUnselectedColor="White">
         <Tab Title="Home" Icon="home.png">
-            <ShellContent 
+            <ShellContent
                 ContentTemplate="{DataTemplate local:Home}">
             </ShellContent>
         </Tab>
-        <Tab Title="Cafes" Icon="cambio.png">
+        <Tab Title="Cambio" Icon="cambio.png">
             <ShellContent 
                 ContentTemplate="{DataTemplate local:CompraVenta}">
             </ShellContent>
