@@ -16,9 +16,9 @@ namespace Divisas.Models
         public string? clave { get; set; }
 
         [MaxLength(10)]
-        public int valor_compra { get; set; }
+        public decimal valor_compra { get; set; }
 
         [MaxLength(10)]
-        public int valor_venta { get; set; }
+        public decimal valor_venta { get; set; }
     }
 }
