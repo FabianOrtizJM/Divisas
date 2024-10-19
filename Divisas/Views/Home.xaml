@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Divisas.Home"
              Title="Home">
-    <ScrollView 
-        BackgroundColor="White">
+    <ScrollView BackgroundColor="White">
         <VerticalStackLayout>
 
             <!-- MXN Section -->
@@ -30,51 +29,37 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <!-- USD Section -->
-            <Frame BackgroundColor="#114676" CornerRadius="10" HasShadow="True" Padding="10" Margin="30,10">
-                <VerticalStackLayout>
-                    <Label Text="USD" FontSize="18" TextColor="White" HorizontalOptions="Center" />
-                    <Grid ColumnSpacing="20">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+            <!-- Dynamic Monedas Section -->
+            <CollectionView ItemsSource="{Binding Monedas}" Margin="30,0,30,0" >
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#114676" CornerRadius="10" HasShadow="True" Padding="10" Margin="30,10">
+                            <VerticalStackLayout >
+                                <Label Text="{Binding clave}" FontSize="18" TextColor="White" HorizontalOptions="Center" />
+                                <Grid ColumnSpacing="20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-                        <VerticalStackLayout Grid.Column="0">
-                            <Label Text="Compra" FontSize="14" TextColor="White" HorizontalOptions="Center" />
-                            <Label Text="$18.75" FontSize="24" TextColor="White" HorizontalOptions="Center" />
-                        </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="0">
+                                        <Label Text="Compra" FontSize="14" TextColor="White" HorizontalOptions="Center" />
+                                        <Label Text="{Binding valor_compra, StringFormat='${0:N2}'}" FontSize="24" TextColor="White" HorizontalOptions="Center" />
+                                    </VerticalStackLayout>
 
-                        <VerticalStackLayout Grid.Column="1">
-                            <Label Text="Venta" FontSize="14" TextColor="White" HorizontalOptions="Center" />
-                            <Label Text="$20.25" FontSize="24" TextColor="White" HorizontalOptions="Center" />
-                        </VerticalStackLayout>
-                    </Grid>
-                </VerticalStackLayout>
-            </Frame>
-
-            <!-- EUR Section -->
-            <Frame BackgroundColor="#114676" CornerRadius="10" HasShadow="True" Padding="10" Margin="30,10">
-                <VerticalStackLayout>
-                    <Label Text="EUR" FontSize="18" TextColor="White" HorizontalOptions="Center" />
-                    <Grid ColumnSpacing="20">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <VerticalStackLayout Grid.Column="0">
-                            <Label Text="Compra" FontSize="14" TextColor="White" HorizontalOptions="Center" />
-                            <Label Text="$20.75" FontSize="24" TextColor="White" HorizontalOptions="Center" />
-                        </VerticalStackLayout>
-
-                        <VerticalStackLayout Grid.Column="1">
-                            <Label Text="Venta" FontSize="14" TextColor="White" HorizontalOptions="Center" />
-                            <Label Text="$22.31" FontSize="24" TextColor="White" HorizontalOptions="Center" />
-                        </VerticalStackLayout>
-                    </Grid>
-                </VerticalStackLayout>
-            </Frame>
+                                    <VerticalStackLayout Grid.Column="1">
+                                        <Label Text="Venta" FontSize="14" TextColor="White" HorizontalOptions="Center" />
+                                        <Label Text="{Binding valor_venta, StringFormat='${0:N2}'}" FontSize="24" TextColor="White" HorizontalOptions="Center" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
         </VerticalStackLayout>
     </ScrollView>
