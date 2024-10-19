@@ -25,7 +25,7 @@ namespace ViewModels
             CargarMonedasCommand = new Command(async () => await CargarMonedas());
 
             // Cargar monedas automáticamente al inicializar el ViewModel.
-            Task.Run(async () => await CargarMonedas());
+            //Task.Run(async () => await CargarMonedas());
         }
 
         // Método para cargar las monedas desde la base de datos.

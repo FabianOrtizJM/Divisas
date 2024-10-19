@@ -37,25 +37,37 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame BackgroundColor="#114676" CornerRadius="10" HasShadow="True" Padding="10" Margin="30,10">
-                            <VerticalStackLayout >
-                                <Label Text="{Binding clave}" FontSize="18" TextColor="White" HorizontalOptions="Center" />
-                                <Grid ColumnSpacing="20">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
+                            <Grid>
+                                <!-- Botón de Editar en la esquina superior derecha -->
+                                <Button
+                                    WidthRequest="30"
+                                    HeightRequest="30"
+                                    ImageSource="edit.png"
+                                    BackgroundColor="Transparent" 
+                                    HorizontalOptions="End" 
+                                    VerticalOptions="Start"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditarCommand}"
+                                    CommandParameter="{Binding .}"/>
+                                <VerticalStackLayout >
+                                    <Label Text="{Binding clave}" FontSize="18" TextColor="White" HorizontalOptions="Center" />
+                                    <Grid ColumnSpacing="20">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
 
-                                    <VerticalStackLayout Grid.Column="0">
-                                        <Label Text="Compra" FontSize="14" TextColor="White" HorizontalOptions="Center" />
-                                        <Label Text="{Binding valor_compra, StringFormat='${0:N2}'}" FontSize="24" TextColor="White" HorizontalOptions="Center" />
-                                    </VerticalStackLayout>
+                                        <VerticalStackLayout Grid.Column="0">
+                                            <Label Text="Compra" FontSize="14" TextColor="White" HorizontalOptions="Center" />
+                                            <Label Text="{Binding valor_compra, StringFormat='${0:N2}'}" FontSize="24" TextColor="White" HorizontalOptions="Center" />
+                                        </VerticalStackLayout>
 
-                                    <VerticalStackLayout Grid.Column="1">
-                                        <Label Text="Venta" FontSize="14" TextColor="White" HorizontalOptions="Center" />
-                                        <Label Text="{Binding valor_venta, StringFormat='${0:N2}'}" FontSize="24" TextColor="White" HorizontalOptions="Center" />
-                                    </VerticalStackLayout>
-                                </Grid>
-                            </VerticalStackLayout>
+                                        <VerticalStackLayout Grid.Column="1">
+                                            <Label Text="Venta" FontSize="14" TextColor="White" HorizontalOptions="Center" />
+                                            <Label Text="{Binding valor_venta, StringFormat='${0:N2}'}" FontSize="24" TextColor="White" HorizontalOptions="Center" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Grid>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
