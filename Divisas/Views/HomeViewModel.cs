@@ -1,5 +1,6 @@
 ﻿using Divisas;
 using Divisas.Models;
+using Divisas.Views;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace ViewModels
 
         // Comando para cargar las monedas, enlazado desde la vista.
         public Command CargarMonedasCommand { get; }
+        public Command<Moneda> EditarCommand { get; }
 
         // Evento para notificar cambios en las propiedades
         public event PropertyChangedEventHandler PropertyChanged;
@@ -23,6 +25,7 @@ namespace ViewModels
         {
             // Inicializar el comando con el método que carga las monedas.
             CargarMonedasCommand = new Command(async () => await CargarMonedas());
+            EditarCommand = new Command<Moneda>(async (moneda) => await EditarMoneda(moneda));
 
             // Cargar monedas automáticamente al inicializar el ViewModel.
             //Task.Run(async () => await CargarMonedas());
@@ -53,6 +56,12 @@ namespace ViewModels
                 // En caso de error, podría usarse algún mecanismo de registro o alertas.
                 Console.WriteLine($"Error al cargar las monedas: {ex.Message}");
             }
+        }
+
+        // Método para navegar a la vista de edición.
+        private async Task EditarMoneda(Moneda moneda)
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new Editar(moneda));
         }
 
         // Método para notificar cambios en las propiedades.

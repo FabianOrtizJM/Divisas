@@ -60,6 +60,7 @@
 	  <None Remove="Resources\Images\addCoins.png" />
 	  <None Remove="Resources\Images\cambio.png" />
 	  <None Remove="Resources\Images\edit.png" />
+	  <None Remove="Resources\Images\editcoins.png" />
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\perfil.png" />
 	  <None Remove="Resources\Images\usuario.png" />
