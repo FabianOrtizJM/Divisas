@@ -32,19 +32,21 @@ namespace Divisas
             using (var dbContext = new DivisasDbContext())
             {
                 dbContext.Database.EnsureCreated();
+                Console.WriteLine("Base de datos creada o ya existía.");
                 dbContext.Dispose();
             }
+
             Microsoft.Maui.Handlers.ToolbarHandler.Mapper.AppendToMapping("CustomNavigationView", (handler, view) =>
             {
-#if ANDROID
+        #if ANDROID
         handler.PlatformView.ContentInsetStartWithNavigation = 0;
         handler.PlatformView.SetContentInsetsAbsolute(0, 0);
-#endif
+        #endif
             });
 
-#if DEBUG
+        #if DEBUG
             builder.Logging.AddDebug();
-#endif
+        #endif
 
             return builder.Build();
         }

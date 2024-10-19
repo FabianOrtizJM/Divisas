@@ -27,7 +27,7 @@ namespace Divisas.Models
         [MaxLength(50)]
         [Required]
         public string? estado { get; set; }
-        [Required]
+        //[Required]
         public string? foto { get; set; }
 
     }
