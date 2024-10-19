@@ -67,8 +67,8 @@ namespace Divisas.ViewModels
             Console.WriteLine("Constructor de CompraVentaViewModel llamado");
 
             _dbContext = new DivisasDbContext();
-            _dbContext.EnsureCreated();
-            _dbContext.SeedData(); // Inserta datos de prueba
+            _dbContext.Database.EnsureCreated();
+            //_dbContext.SeedData(); // Inserta datos de prueba
             Monedas = new ObservableCollection<Moneda>();
             EsCompra = false; // Por defecto, seleccionamos "vender"
             _monto = string.Empty;
