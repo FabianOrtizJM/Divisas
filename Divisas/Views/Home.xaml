@@ -30,11 +30,14 @@
             </Frame>
 
             <!-- Dynamic Monedas Section -->
-            <CollectionView ItemsSource="{Binding Monedas}">
+            <CollectionView ItemsSource="{Binding Monedas}" Margin="30,0,30,0" >
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame BackgroundColor="#114676" CornerRadius="10" HasShadow="True" Padding="10" Margin="30,10">
-                            <VerticalStackLayout>
+                            <VerticalStackLayout >
                                 <Label Text="{Binding clave}" FontSize="18" TextColor="White" HorizontalOptions="Center" />
                                 <Grid ColumnSpacing="20">
                                     <Grid.ColumnDefinitions>
