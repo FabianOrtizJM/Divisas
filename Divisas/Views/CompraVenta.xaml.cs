@@ -49,4 +49,13 @@ public partial class CompraVenta : ContentPage
         // Cambia la propiedad del ViewModel
         ((CompraVentaViewModel)BindingContext).EsCompra = false;
     }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Actualiza las monedas cada vez que aparece la pantalla
+        await ((CompraVentaViewModel)BindingContext).LoadMonedas();
+    }
+
 }

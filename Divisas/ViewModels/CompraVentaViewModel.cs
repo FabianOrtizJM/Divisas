@@ -65,7 +65,7 @@ namespace Divisas.ViewModels
         public CompraVentaViewModel()
         {
             Console.WriteLine("Constructor de CompraVentaViewModel llamado");
-
+           
             _dbContext = new DivisasDbContext();
             _dbContext.Database.EnsureCreated();
             //_dbContext.SeedData(); // Inserta datos de prueba
@@ -97,9 +97,8 @@ namespace Divisas.ViewModels
             }
             catch (Exception ex)
             {
-                // Puedes usar un Log o un Alert para ver si hay errores
+                // Manejo de errores
                 Console.WriteLine($"Error cargando monedas: {ex.Message}");
-            
             }
         }
         // Lógica para realizar la conversión de divisas
@@ -117,7 +116,7 @@ namespace Divisas.ViewModels
             {
                 Resultado = EsCompra
                    ? $"La compra está a un total de ${0}"
-                    : $"La venta está a un total de ${0} + IVA";
+                    : $"La venta está a un total de ${0}";
             }
         }
 
