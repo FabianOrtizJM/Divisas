@@ -104,19 +104,34 @@ namespace Divisas.ViewModels
         // Lógica para realizar la conversión de divisas
         public void RealizarOperacion()
         {
-            // Usar decimal para manejar cantidades con decimales
             if (SelectedMoneda != null && !string.IsNullOrEmpty(Monto) && decimal.TryParse(Monto, out decimal montoValue))
             {
+                // Asegúrate de que el valor de la moneda no sea nulo
                 decimal valorOperacion = EsCompra ? (decimal)SelectedMoneda.valor_compra : (decimal)SelectedMoneda.valor_venta;
-                Resultado = EsCompra
-                    ? $"La compra está a un total de ${(montoValue * valorOperacion):F2}"
-                    : $"La venta está a un total de ${(montoValue * valorOperacion):F2} + IVA";
+
+                if (valorOperacion > 0)
+                {
+                    if (EsCompra)
+                    {
+                        // Para compra: se divide el monto en MXN entre el valor de compra de la moneda seleccionada
+                        Resultado = $"La compra está a un total de ${(montoValue / valorOperacion):F2} {SelectedMoneda.clave}";
+                    }
+                    else
+                    {
+                        // Para venta: se multiplica el monto en la moneda seleccionada por el valor de venta
+                        Resultado = $"La venta está a un total de ${(montoValue * valorOperacion):F2} MXN";
+                    }
+                }
+                else
+                {
+                    Resultado = "Error: el valor de la operación es inválido.";
+                }
             }
             else
             {
                 Resultado = EsCompra
-                   ? $"La compra está a un total de ${0}"
-                    : $"La venta está a un total de ${0}";
+                   ? $"La compra está a un total de $0"
+                   : $"La venta está a un total de $0";
             }
         }
 

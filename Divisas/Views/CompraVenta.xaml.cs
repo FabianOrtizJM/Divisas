@@ -33,6 +33,7 @@ public partial class CompraVenta : ContentPage
         lineaVender.Color = Colors.Gray;
         btnComprar.TextColor = Color.FromArgb("#114676");
         btnVender.TextColor = Colors.Gray;
+        TextoMXN.IsVisible = true;
 
         // Cambia la propiedad del ViewModel
         ((CompraVentaViewModel)BindingContext).EsCompra = true;
@@ -45,7 +46,8 @@ public partial class CompraVenta : ContentPage
         lineaVender.Color = Color.FromArgb("#114676");
         btnComprar.TextColor = Colors.Gray;
         btnVender.TextColor = Color.FromArgb("#114676");
-
+        //Ocultar boton
+        TextoMXN.IsVisible = false;
         // Cambia la propiedad del ViewModel
         ((CompraVentaViewModel)BindingContext).EsCompra = false;
     }

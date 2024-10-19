@@ -47,7 +47,7 @@
                            TextColor="Black" PlaceholderColor="Gray" 
                                Text="{Binding Monto, Mode=TwoWay}"  MaxLength="10" Keyboard="Numeric"/>
                     
-                    <Button Text="MXN" BackgroundColor="Transparent" TextColor="Black" 
+                    <Button Text="MXN" BackgroundColor="Transparent" TextColor="Black" x:Name="TextoMXN" 
                             FontSize="Medium" HorizontalOptions="End" VerticalOptions="Center"/>
                 </Grid>
             </Frame>
