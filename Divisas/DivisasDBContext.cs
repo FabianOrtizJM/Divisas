@@ -38,7 +38,7 @@ namespace Divisas
         }
 
         // Método para insertar datos de prueba
-        public void SeedData()
+      /*  public void SeedData()
         {
             if (!Monedas.Any())
             {
@@ -61,6 +61,6 @@ namespace Divisas
 
                 SaveChanges();
             }
-        }
+        }*/
     }
 }
