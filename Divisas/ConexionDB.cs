@@ -22,6 +22,16 @@ namespace Divisas
                 rutaBaseDatos = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 rutaBaseDatos = Path.Combine(rutaBaseDatos, "..", "Library", divisasdb);
             }
+            //Desktop
+            else if (DeviceInfo.Platform == DevicePlatform.WinUI)
+            {
+                rutaBaseDatos = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                rutaBaseDatos = Path.Combine(rutaBaseDatos, divisasdb);
+            }
+            else
+            {
+                throw new Exception("Plataforma no soportada.");
+            }
 
             return rutaBaseDatos;
         }
