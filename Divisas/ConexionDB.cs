@@ -23,7 +23,7 @@ namespace Divisas
                 rutaBaseDatos = Path.Combine(rutaBaseDatos, "..", "Library", divisasdb);
             }
             //Desktop
-            else if(DeviceInfo.Platform == DevicePlatform.WinUI)
+            else if (DeviceInfo.Platform == DevicePlatform.WinUI)
             {
                 rutaBaseDatos = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
                 rutaBaseDatos = Path.Combine(rutaBaseDatos, divisasdb);
