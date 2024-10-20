@@ -36,7 +36,7 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="30,10">
+                        <Grid>
                             <!-- Frame con diseño original -->
                             <Frame BackgroundColor="#114676" CornerRadius="10" HasShadow="True" Padding="10">
                                 <Grid>
@@ -59,22 +59,21 @@
                                             </VerticalStackLayout>
                                         </Grid>
                                     </VerticalStackLayout>
+                                    <!-- Botón de Editar encima del Frame -->
+                                    <Button
+                                        WidthRequest="40"
+                                        HeightRequest="40"
+                                        ImageSource="edit.png"
+                                        BackgroundColor="Transparent"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Start"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditarCommand}"
+                                        CommandParameter="{Binding .}" 
+                                        Opacity="1" 
+                                        Margin="0, -10, -10, 0" />
+                                    <!-- Ajusta el margen para superponerlo -->
                                 </Grid>
                             </Frame>
-
-                            <!-- Botón de Editar encima del Frame -->
-                            <Button
-                                WidthRequest="30"
-                                HeightRequest="30"
-                                ImageSource="edit.png"
-                                BackgroundColor="Transparent"
-                                HorizontalOptions="End"
-                                VerticalOptions="Start"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditarCommand}"
-                                CommandParameter="{Binding .}" 
-                                Opacity="1" 
-                                Margin="0, 0, 0, 0" />
-                            <!-- Ajusta el margen para superponerlo -->
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
