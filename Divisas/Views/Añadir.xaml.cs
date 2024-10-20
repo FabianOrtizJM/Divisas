@@ -1,104 +1,85 @@
 using Divisas.Models;
 using System.Text;
 
-namespace Divisas;
-
-public partial class Añadir : ContentPage
+namespace Divisas
 {
-    public Añadir()
+    public partial class Añadir : ContentPage
     {
-        InitializeComponent();
-    }
-
-    // Evento click para el botón de guardar
-    private async void OnGuardarClicked(object sender, EventArgs e)
-    {
-        // Validar que los campos no estén vacíos
-        if (string.IsNullOrWhiteSpace(Clave.Text) || string.IsNullOrWhiteSpace(PrecioV.Text) || string.IsNullOrWhiteSpace(PrecioC.Text))
+        public Añadir()
         {
-            await DisplayAlert("Error", "Por favor complete todos los campos.", "OK");
-            return;
+            InitializeComponent();
         }
 
-        // Intentar convertir los precios a decimales
-        if (!decimal.TryParse(PrecioV.Text, out decimal precioVenta) || !decimal.TryParse(PrecioC.Text, out decimal precioCompra))
+        private async void OnGuardarClicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Error", "Por favor ingrese precios válidos.", "OK");
-            return;
-        }
-
-        // Crear una nueva instancia de Moneda
-        Moneda nuevaMoneda = new Moneda
-        {
-            clave = Clave.Text,
-            valor_venta = precioVenta,
-            valor_compra = precioCompra
-        };
-
-        // Validar si la clave de la moneda ya existe en la base de datos
-        try
-        {
-            using (var db = new DivisasDbContext())
+            // Validar que los campos no estén vacíos
+            if (string.IsNullOrWhiteSpace(Clave.Text) || string.IsNullOrWhiteSpace(PrecioV.Text) || string.IsNullOrWhiteSpace(PrecioC.Text))
             {
-                var monedaExistente = db.Monedas.FirstOrDefault(m => m.clave == nuevaMoneda.clave);
-
-                // Si ya existe una moneda con esa clave, mostrar un mensaje de error
-                if (monedaExistente != null)
-                {
-                    await DisplayAlert("Error", "Ya existe una moneda con esta clave.", "OK");
-                    return;
-                }
-
-                // Si no existe, procedemos a guardar la nueva moneda
-                db.Monedas.Add(nuevaMoneda);
-                await db.SaveChangesAsync(); // Guardar los cambios de manera asíncrona
+                await DisplayAlert("Error", "Por favor complete todos los campos.", "OK");
+                return;
             }
 
-            await DisplayAlert("Éxito", "Moneda guardada correctamente.", "OK");
-
-            //Mostrar Monedas
-            //await MostrarMonedasGuardadas();
-
-            // Opcional: limpiar los campos después de guardar
-            Clave.Text = string.Empty;
-            PrecioV.Text = string.Empty;
-            PrecioC.Text = string.Empty;
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", $"Hubo un problema al guardar la moneda: {ex.Message}", "OK");
-        }
-    }
-
-    // Método para mostrar las monedas guardadas
-    private async Task MostrarMonedasGuardadas()
-    {
-        try
-        {
-            using (var db = new DivisasDbContext())
+            // Validar la clave (máximo 3 letras)
+            if (Clave.Text.Length > 3)
             {
-                var monedas = db.Monedas.ToList();
-
-                if (monedas.Count == 0)
-                {
-                    await DisplayAlert("Monedas", "No hay monedas guardadas.", "OK");
-                    return;
-                }
-
-                // Construir el texto con la información de las monedas
-                StringBuilder sb = new StringBuilder();
-                foreach (var moneda in monedas)
-                {
-                    sb.AppendLine($"Clave: {moneda.clave}, Compra: {moneda.valor_compra}, Venta: {moneda.valor_venta}");
-                }
-
-                // Mostrar en un DisplayAlert
-                await DisplayAlert("Monedas Guardadas", sb.ToString(), "OK");
+                await DisplayAlert("Error", "La clave debe tener un máximo de 3 letras.", "OK");
+                return;
             }
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", $"Hubo un problema al obtener las monedas: {ex.Message}", "OK");
+
+            // Convertir la clave a mayúsculas
+            string claveMayus = Clave.Text.ToUpper();
+
+            // Intentar convertir los precios a decimales con validación de dos decimales
+            if (!decimal.TryParse(PrecioV.Text, out decimal precioVenta) || !decimal.TryParse(PrecioC.Text, out decimal precioCompra))
+            {
+                await DisplayAlert("Error", "Por favor ingrese precios válidos.", "OK");
+                return;
+            }
+
+            // Validar que los precios tengan solo 2 decimales
+            if (Math.Round(precioVenta, 2) != precioVenta || Math.Round(precioCompra, 2) != precioCompra)
+            {
+                await DisplayAlert("Error", "Los precios deben tener solo 2 decimales.", "OK");
+                return;
+            }
+
+            // Validar si la clave de la moneda ya existe en la base de datos
+            try
+            {
+                using (var db = new DivisasDbContext())
+                {
+                    var monedaExistente = db.Monedas.FirstOrDefault(m => m.clave == claveMayus);
+
+                    // Si ya existe una moneda con esa clave, mostrar un mensaje de error
+                    if (monedaExistente != null)
+                    {
+                        await DisplayAlert("Error", "Ya existe una moneda con esta clave.", "OK");
+                        return;
+                    }
+
+                    // Crear un nuevo objeto de moneda y guardarlo
+                    var nuevaMoneda = new Moneda
+                    {
+                        clave = claveMayus,
+                        valor_venta = precioVenta,
+                        valor_compra = precioCompra
+                    };
+
+                    db.Monedas.Add(nuevaMoneda);
+                    await db.SaveChangesAsync(); // Guardar los cambios de manera asíncrona
+                }
+                Clave.Text = string.Empty;
+                PrecioV.Text = string.Empty;
+                PrecioC.Text = string.Empty;
+                await DisplayAlert("Éxito", "Moneda añadida correctamente.", "OK");
+                //await Navigation.PopAsync(); // Regresar a la vista anterior después de añadir
+                //await Navigation.PushAsync(new Home());
+                Shell.Current.GoToAsync("//Home");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Hubo un problema al añadir la moneda: {ex.Message}", "OK");
+            }
         }
     }
 }
