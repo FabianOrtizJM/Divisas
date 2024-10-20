@@ -23,7 +23,7 @@
     <TabBar Shell.TabBarBackgroundColor="#114676" Shell.TabBarTitleColor="White" Shell.TabBarUnselectedColor="White">
         <Tab Title="Home" Icon="home.png">
             <ShellContent
-                ContentTemplate="{DataTemplate local:Home}">
+                ContentTemplate="{DataTemplate local:Home}" Route="Home">
             </ShellContent>
         </Tab>
         <Tab Title="Cambio" Icon="cambio.png">

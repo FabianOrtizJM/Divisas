@@ -6,7 +6,7 @@
     <ScrollView>
         <StackLayout BackgroundColor="White" Padding="20">
             <Frame BorderColor="White" BackgroundColor="White" Padding="0" WidthRequest="200" HeightRequest="200" Margin="0,10,0,0">
-                <Image HeightRequest="200" WidthRequest="200" Source="addcoins.png" Aspect="AspectFit"></Image>
+                <Image HeightRequest="200" WidthRequest="200" Source="editcoins.png" Aspect="AspectFit"></Image>
             </Frame>
 
             <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
@@ -29,7 +29,23 @@
 
             <Frame Padding="0" Margin="0,10,0,0">
                 <StackLayout Padding="0">
-                    <Button Text="Guardar cambios" Padding="20" BackgroundColor="Blue" TextColor="White" FontSize="20"></Button>
+                    <Button Text="Regresar a Home" 
+                            Padding="20" 
+                            BackgroundColor="#114676"
+                            TextColor="White" 
+                            FontSize="20" 
+                            Clicked="OnRegresarClicked"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Padding="0" Margin="0,10,0,0">
+                <StackLayout Padding="0">
+                    <Button Text="Guardar cambios" 
+                            Padding="20" 
+                            BackgroundColor="#114676" 
+                            TextColor="White" 
+                            FontSize="20" 
+                            Clicked="OnGuardarClicked"/>
                 </StackLayout>
             </Frame>
         </StackLayout>
