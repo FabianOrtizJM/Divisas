@@ -1,5 +1,6 @@
 using Divisas.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 
 namespace Divisas.Views
 {
@@ -34,9 +35,9 @@ namespace Divisas.Views
             }
 
             // Validar la clave (máximo 3 letras)
-            if (Clave.Text.Length > 3)
+            if (!Regex.IsMatch(Clave.Text, @"^[A-Za-z]{3}$"))
             {
-                await DisplayAlert("Error", "La clave debe tener un máximo de 3 letras.", "OK");
+                await DisplayAlert("Error", "La clave debe tener 3 letras sin números.", "OK");
                 return;
             }
 
