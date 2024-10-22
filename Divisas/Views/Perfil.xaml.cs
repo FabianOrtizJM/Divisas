@@ -3,15 +3,18 @@ using System;
 using System.IO;
 using Microsoft.Maui.Controls;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.ComponentModel;
 
 namespace Divisas;
-public partial class Perfil : ContentPage
+public partial class Perfil : ContentPage, INotifyPropertyChanged
 {
+    public Sucursal Sucursal { get; set; }
     public Perfil()
     {
         InitializeComponent();
         VerificarSucursal();
         CargarDatosSucursal();
+        BindingContext = this;
     }
 
     private void VerificarSucursal()
@@ -51,7 +54,9 @@ public partial class Perfil : ContentPage
             codigo_postal.Text = sucursal.codigo_postal.ToString();
             ciudad.Text = sucursal.ciudad;
             estado.Text = sucursal.estado;
-            foto.Source = sucursal.foto; // Asignar la imagen
+            foto.Text= sucursal.foto;
+            Sucursal = sucursal;
+            OnPropertyChanged(nameof(Sucursal));
         }
         else
         {
@@ -94,15 +99,23 @@ public partial class Perfil : ContentPage
                 codigo_postal = int.Parse(codigo_postal.Text),
                 ciudad = ciudad.Text,
                 estado = estado.Text,
-                foto = foto.Source?.ToString()
-                // Asegúrate de que la ruta sea correcta
+                foto = foto.Text,
             };
 
             using (var db = new DivisasDbContext())
             {
-                // Lógica para actualizar la sucursal en la base de datos
                 db.Sucursales.Update(sucursalActualizada);
                 await db.SaveChangesAsync(); // Guardar los cambios
+            }
+
+            // Actualizar la propiedad en AppShell
+            var appShell = Application.Current.MainPage as AppShell;
+            if (appShell != null)
+            {
+                // Actualiza los campos directamente en la instancia existente
+                appShell.Sucursal.nombre_empresa = sucursalActualizada.nombre_empresa;
+                appShell.Sucursal.foto = sucursalActualizada.foto;
+                // Agrega otras propiedades si es necesario
             }
 
             await DisplayAlert("Éxito", "Sucursal actualizada correctamente.", "OK");
@@ -110,6 +123,23 @@ public partial class Perfil : ContentPage
         catch (Exception ex)
         {
             await DisplayAlert("Error", $"Hubo un problema al actualizar la sucursal: {ex.Message}", "OK");
+        }
+    }
+
+
+    private async void OnSelectPhotoClicked(object sender, EventArgs e)
+    {
+        var result = await FilePicker.PickAsync(new PickOptions
+        {
+            PickerTitle = "Selecciona una foto",
+            FileTypes = FilePickerFileType.Images
+        });
+
+        if (result != null)
+        {
+            foto.Text = result.FullPath; // Asigna la ruta al Entry de la foto
+            Sucursal.foto = result.FullPath; // También asigna a tu modelo
+            OnPropertyChanged(nameof(Sucursal)); // Notifica el cambio
         }
     }
 }

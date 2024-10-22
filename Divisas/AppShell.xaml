@@ -8,12 +8,12 @@
     Title="Divisas">
     <Shell.TitleView>
             <HorizontalStackLayout Spacing="10" Padding="5" BackgroundColor="#114676" IgnoreSafeArea="True">
-                <Image Source="dotnet_bot.png" 
+                <Image Source="{Binding Sucursal.foto}" 
                        VerticalOptions="Center" 
                        HorizontalOptions="Start"
                        Aspect="AspectFit"
                        HeightRequest="30"/>
-                <Label Text="Nombre de empresa" 
+                <Label Text="{Binding Sucursal.nombre_empresa}" 
                        FontSize="Medium" 
                        VerticalOptions="Center" 
                        HorizontalOptions="Center" 

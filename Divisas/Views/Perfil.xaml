@@ -5,15 +5,21 @@
              Title="Perfil">
     <ScrollView>
         <StackLayout BackgroundColor="White" Padding="20">
-        <Label Text="añadir imagen" TextColor="Black" HorizontalTextAlignment="Center"></Label>
-            <Image x:Name="foto" WidthRequest="200" HeightRequest="200"></Image>
+            <Image WidthRequest="200" HeightRequest="200" Source="{Binding Sucursal.foto}"></Image>
+            <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0" IsVisible="False">
+                <StackLayout Padding="0">
+                    <Entry x:Name="foto" Text="foto" Placeholder="foto" HorizontalTextAlignment="Center" FontSize="20" TextColor="Black" />
+                </StackLayout>
+            </Frame>
             <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
-            <StackLayout Padding="0">
-                <Entry x:Name="nombre_empresa" Text="nombre_empresa" Placeholder="Nombre Empresa" HorizontalTextAlignment="Center" FontSize="20" TextColor="Black" />
-            </StackLayout>
-        </Frame>
-
-        <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
+                <Button Text="Seleccionar Foto" Padding="20" BackgroundColor="#114676" TextColor="White" FontSize="20" Clicked="OnSelectPhotoClicked" />
+            </Frame>
+            <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
+                <StackLayout Padding="0">
+                    <Entry x:Name="nombre_empresa" Text="nombre_empresa" Placeholder="Nombre Empresa" HorizontalTextAlignment="Center" FontSize="20" TextColor="Black" />
+                </StackLayout>
+            </Frame>
+            <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
             <StackLayout Padding="0">
                     <Entry x:Name="direccion" Placeholder="Direccion #1" HorizontalTextAlignment="Center" FontSize="20" TextColor="Black" />
             </StackLayout>
