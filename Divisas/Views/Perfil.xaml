@@ -5,47 +5,49 @@
              Title="Perfil">
     <ScrollView>
         <StackLayout BackgroundColor="White" Padding="20">
-        <Label Text="añadir imagen" TextColor="Black" HorizontalTextAlignment="Center"></Label>
-        <Button BackgroundColor="White" WidthRequest="200" HeightRequest="200">
-            <Button.ImageSource>
-                <FileImageSource File="usuario.png"></FileImageSource>
-            </Button.ImageSource>
-        </Button>
-        <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
+            <Image WidthRequest="200" HeightRequest="200" Source="{Binding Sucursal.foto}"></Image>
+            <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0" IsVisible="False">
+                <StackLayout Padding="0">
+                    <Entry x:Name="foto" Text="foto" Placeholder="foto" HorizontalTextAlignment="Center" FontSize="20" TextColor="Black" />
+                </StackLayout>
+            </Frame>
+            <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
+                <Button Text="Seleccionar Foto" Padding="20" BackgroundColor="#114676" TextColor="White" FontSize="20" Clicked="OnSelectPhotoClicked" />
+            </Frame>
+            <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
+                <StackLayout Padding="0">
+                    <Entry x:Name="nombre_empresa" Text="nombre_empresa" Placeholder="Nombre Empresa" HorizontalTextAlignment="Center" FontSize="20" TextColor="Black" />
+                </StackLayout>
+            </Frame>
+            <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
             <StackLayout Padding="0">
-                <Entry x:Name="NombreUsuarioEntry" Placeholder="Nombre Empresa" HorizontalTextAlignment="Center" FontSize="20" />
+                    <Entry x:Name="direccion" Placeholder="Direccion #1" HorizontalTextAlignment="Center" FontSize="20" TextColor="Black" />
             </StackLayout>
         </Frame>
 
         <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
             <StackLayout Padding="0">
-                <Entry x:Name="DireccionunoEntry" Placeholder="Direccion #1" HorizontalTextAlignment="Center" FontSize="20" />
-            </StackLayout>
-        </Frame>
-
-        <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
-            <StackLayout Padding="0">
-                <Entry x:Name="DirecciondosEntry" Placeholder="Direccion #2 (opcional)" HorizontalTextAlignment="Center" FontSize="20" />
+                    <Entry x:Name="direccion2" Placeholder="Direccion #2 (opcional)" HorizontalTextAlignment="Center" FontSize="20" TextColor="Black" />
             </StackLayout>
         </Frame>
         <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
             <StackLayout Padding="0">
-                <Entry x:Name="CPEntry" Placeholder="C.P." HorizontalTextAlignment="Center" FontSize="20" />
+                    <Entry x:Name="codigo_postal" Placeholder="C.P." HorizontalTextAlignment="Center" FontSize="20" TextColor="Black" />
             </StackLayout>
         </Frame>
         <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
             <StackLayout Padding="0">
-                <Entry x:Name="CiudadEntry" Placeholder="Ciudad" HorizontalTextAlignment="Center" FontSize="20" />
+                    <Entry x:Name="ciudad" Placeholder="Ciudad" HorizontalTextAlignment="Center" FontSize="20" TextColor="Black" />
             </StackLayout>
         </Frame>
         <Frame BackgroundColor="White" Padding="0" Margin="0,10,0,0">
             <StackLayout Padding="0">
-                <Entry x:Name="EstadoEntry" Placeholder="Estado" HorizontalTextAlignment="Center" FontSize="20" />
+                    <Entry x:Name="estado" Placeholder="Estado" HorizontalTextAlignment="Center" FontSize="20" TextColor="Black" />
             </StackLayout>
         </Frame>
         <Frame Padding="0" Margin="0,10,0,0">
             <StackLayout Padding="0">
-                <Button Text="Guardar datos" Padding="20" BackgroundColor="#114676" TextColor="White" FontSize="20"></Button>
+                <Button Text="Guardar datos" Padding="20" BackgroundColor="#114676" TextColor="White" FontSize="20" Clicked="OnGuardarClicked"></Button>
             </StackLayout>
         </Frame>
     </StackLayout>

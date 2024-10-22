@@ -11,11 +11,13 @@ namespace Divisas.ViewModels
     public class CompraVentaViewModel : INotifyPropertyChanged
     {
         private DivisasDbContext _dbContext;
-        public ObservableCollection<Moneda> Monedas { get; set; }
+        public ObservableCollection<Moneda> Monedas { get; set; } = new ObservableCollection<Moneda>();
+            public Command CargarMonedasCommand { get; }
         private Moneda _selectedMoneda;
         private string _monto;
         private string _resultado;
         private bool _esCompra;  // Nueva propiedad para determinar si es compra o venta
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public Moneda SelectedMoneda
         {
@@ -63,12 +65,10 @@ namespace Divisas.ViewModels
 
         // Constructor
         public CompraVentaViewModel()
-        {
-            Console.WriteLine("Constructor de CompraVentaViewModel llamado");
-
+        {           
             _dbContext = new DivisasDbContext();
-            _dbContext.EnsureCreated();
-            _dbContext.SeedData(); // Inserta datos de prueba
+            _dbContext.Database.EnsureCreated();
+            //_dbContext.SeedData(); // Inserta datos de prueba
             Monedas = new ObservableCollection<Moneda>();
             EsCompra = false; // Por defecto, seleccionamos "vender"
             _monto = string.Empty;
@@ -76,55 +76,106 @@ namespace Divisas.ViewModels
 
             // Cargar las monedas de la base de datos
             _ = LoadMonedas(); // Llama al método async sin esperar en el constructor
+
+            CargarMonedasCommand = new Command(async () => await LoadMonedas());
+
         }
 
         // Método para cargar monedas desde la base de datos
+        /*  public async Task LoadMonedas()
+          {
+              try
+              {
+                  var monedas = await _dbContext.Monedas.ToListAsync();
+                  Monedas.Clear();
+                  foreach (var moneda in monedas)
+                  {
+                      Monedas.Add(moneda);
+
+                  }
+
+                  if (Monedas.Any())
+                  {
+                      SelectedMoneda = Monedas.FirstOrDefault();
+                  }
+              }
+              catch (Exception ex)
+              {
+                  // Manejo de errores
+                  Console.WriteLine($"Error cargando monedas: {ex.Message}");
+              }
+          }*/
+
         public async Task LoadMonedas()
         {
             try
             {
-                var monedas = await _dbContext.Monedas.ToListAsync();
+                // Limpiar la colección de monedas existente antes de cargar nuevas
                 Monedas.Clear();
-                foreach (var moneda in monedas)
-                {
-                    Monedas.Add(moneda);
-                }
 
-                if (Monedas.Any())
+                // Conexión a la base de datos para obtener las monedas.
+                using (var db = new DivisasDbContext())
                 {
-                    SelectedMoneda = Monedas.FirstOrDefault();
+                    var monedas = await db.Monedas.ToListAsync();
+
+                    // Agregar cada moneda a la colección observable.
+                    foreach (var moneda in monedas)
+                    {
+                        Monedas.Add(moneda);
+                    }
+                    if (Monedas.Any())
+                    {
+                        SelectedMoneda = Monedas.First();
+                    }
                 }
             }
             catch (Exception ex)
             {
-                // Puedes usar un Log o un Alert para ver si hay errores
-                Console.WriteLine($"Error cargando monedas: {ex.Message}");
-            
+                // En caso de error, podría usarse algún mecanismo de registro o alertas.
+                Console.WriteLine($"Error al cargar las monedas: {ex.Message}");
             }
         }
+        public async Task ActualizarMonedas()
+        {
+            await  LoadMonedas();
+        }
+        
+
         // Lógica para realizar la conversión de divisas
         public void RealizarOperacion()
         {
-            // Usar decimal para manejar cantidades con decimales
             if (SelectedMoneda != null && !string.IsNullOrEmpty(Monto) && decimal.TryParse(Monto, out decimal montoValue))
             {
+                // Asegúrate de que el valor de la moneda no sea nulo
                 decimal valorOperacion = EsCompra ? (decimal)SelectedMoneda.valor_compra : (decimal)SelectedMoneda.valor_venta;
-                Resultado = EsCompra
-                    ? $"La compra está a un total de ${(montoValue * valorOperacion):F2}"
-                    : $"La venta está a un total de ${(montoValue * valorOperacion):F2} + IVA";
+
+                if (valorOperacion > 0)
+                {
+                    if (EsCompra)
+                    {
+                        // Para compra: se divide el monto en MXN entre el valor de compra de la moneda seleccionada
+                        Resultado = $"La compra está a un total de ${(montoValue / valorOperacion):F2} {SelectedMoneda.clave}";
+                    }
+                    else
+                    {
+                        // Para venta: se multiplica el monto en la moneda seleccionada por el valor de venta
+                        Resultado = $"La venta está a un total de ${(montoValue * valorOperacion):F2} MXN";
+                    }
+                }
+                else
+                {
+                    Resultado = "Error: el valor de la operación es inválido.";
+                }
             }
             else
             {
                 Resultado = EsCompra
-                   ? $"La compra está a un total de ${0}"
-                    : $"La venta está a un total de ${0} + IVA";
+                   ? $"La compra está a un total de $0"
+                   : $"La venta está a un total de $0";
             }
         }
 
-        // Método para notificar cambios a la UI
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
